@@ -1,0 +1,60 @@
+﻿@model List<Slider>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="modal" id="Delete" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6> Faylı Siləcəyinizdən Əminsinizmi ? </h6>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="post" class="modal-footer">
+                <button type="submit" class="btn btn-danger">Yes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+            </form>
+        </div>
+    </div>
+</div>
+<table class="table w-75 mx-auto " style="margin-top:100px;font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Photo</th>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Position</th>
+            <th scope="col">Edit Button</th>
+            <th scope="col">Delete Button</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <th scope="row">@item.Id</th>
+                <td scope="col"> <img src="~/admin/images/carousel/@item.Url" /> </td>
+                <td>@item.Name</td>
+                <td>@item.Description</td>
+                <td>@item.Position</td>
+                <td><a class="btn btn-outline-primary" asp-action="Update" asp-route-id="@item.Id">Edit</a></td>
+                <td><span type="button" class="btn btn-outline-danger pe-auto" id="delete" data-toggle="modal" data-target="#Delete" data-id="@item.Id">Delete</span></td>
+
+
+            </tr>
+
+        }
+    </tbody>
+</table>
+@section Scripts
+{
+    <script>
+       $("span[type='button']").click(function () {
+            $("#Delete form").attr("action", "/Manage/Slider/Delete/" + $(this).attr("data-id"))
+        })
+    </script>
+}

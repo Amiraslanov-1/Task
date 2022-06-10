@@ -1,0 +1,32 @@
+﻿@model Slider
+@{
+    ViewData["Title"] = " Update";
+}
+
+<form method="post" enctype="multipart/form-data" style="margin-top:150px; margin-left:50px; ">
+    <div class="mb-3">
+        <label asp-for=Name></label><br />
+        <input class=form-control asp-for=Name>
+        <span class=" text-danger " asp-validation-for=Name></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for=Description></label><br />
+        <textarea class=form-control asp-for=Description></textarea>
+        <span class=" text-danger " asp-validation-for=Description></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for=Position></label><br />
+        <textarea class=form-control asp-for=Position></textarea>
+        <span class=" text-danger " asp-validation-for=Position></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Photo"></label><br />
+        <input class=form-control asp-for=Photo />
+        <span class=" text-danger " asp-validation-for=Photo></span>
+    </div>
+
+    <div class="mb-3">
+        <input type="submit" class="btn btn-dark" value="Update" />
+    </div>
+
+</form>
